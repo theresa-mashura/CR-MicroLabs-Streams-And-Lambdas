@@ -6,6 +6,8 @@ import com.zipcodewilmington.streams.tools.RandomUtils;
 import com.zipcodewilmington.streams.tools.StringUtils;
 
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,7 +57,13 @@ public class StreamFilter {
      * @return a list of person object whose name starts with `this.startingCharacter`
      */ //TODO
     public List<Person> toListMultiLine() {
-        return null;
+        Predicate<Person> func = (person) -> {
+            return person.getName().substring(0, 1).equals(startingCharacter);
+        };
+        List<Person> p = personStream
+                .filter(Predicate.isEqual(func))
+                .collect(Collectors.toList());
+        return p;
     }
 
 
@@ -64,7 +72,11 @@ public class StreamFilter {
      * @return a list of person objects whose name starts with `this.startingCharacter`
      */ //TODO
     public List<Person> toListOneLine() {
-        return null;
+        Predicate<Person> func = (person) -> person.getName().substring(0, 1).equals(startingCharacter);
+        List<Person> p = personStream
+                .filter(Predicate.isEqual(func))
+                .collect(Collectors.toList());
+        return p;
     }
 
 
@@ -73,7 +85,11 @@ public class StreamFilter {
      * @return an array of person object whose name starts with `this.startingCharacter`
      */ //TODO
     public Person[] toArrayOneLine() {
-        return null;
+        Predicate<Person> func = (person) -> person.getName().substring(0, 1).equals(startingCharacter);
+        Person[] p = personStream
+                .filter(Predicate.isEqual(func))
+                .toArray(Person[]::new);
+        return p;
     }
 
 
@@ -82,7 +98,13 @@ public class StreamFilter {
      * @return an array of person object whose name starts with `this.startingCharacter`
      */ //TODO
     public Person[] toArrayMultiLine() {
-        return null;
+        Predicate<Person> func = (person) -> {
+            return person.getName().substring(0, 1).equals(startingCharacter);
+        };
+        Person[] p = personStream
+                .filter(Predicate.isEqual(func))
+                .toArray(Person[]::new);
+        return p;
     }
 
 }

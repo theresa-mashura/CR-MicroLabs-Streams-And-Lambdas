@@ -5,6 +5,7 @@ import com.zipcodewilmington.streams.conversions.StreamConverter;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,7 +19,10 @@ public class StreamMap {
      * @return - a Stream of single characters
      */ //TODO
     public static Stream<String> letters(String someWord) {
-        return null;
+        Stream<String> s = someWord
+                .chars()
+                .mapToObj(Character::toString);
+        return s;
     }
 
     /**
@@ -26,6 +30,9 @@ public class StreamMap {
      * @return - a Stream of several Streams of single characters
      */ //TODO
     public static Stream<Stream<String>> wordsMap(String... someWords) {
+        Stream<Stream<String>> s = Stream
+                .of(someWords)
+                .map(word -> word.chars().mapToObj(Character::toString));
         return null;
     }
 
@@ -34,6 +41,9 @@ public class StreamMap {
      * @return - a Stream of several Streams of single characters
      */ //TODO
     public static Stream<String> wordsFlatMap(String... stringArray) {
-        return null;
+        Stream<String> s = Stream
+                .of(stringArray)
+                .flatMap(word -> word.chars().mapToObj(Character::toString));
+        return s;
     }
 }
